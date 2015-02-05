@@ -79,7 +79,7 @@ public class MainActivity extends ActionBarActivity {
 	                setStatusText("Bluetooth on");
 	                Log.d(Connector.TAG, "Bluetooth turned on");
 	                Toast.makeText(getApplicationContext(), "Bluetooth turned on!", Toast.LENGTH_LONG).show();
-	                connectAndReadMessage();
+	                //connectAndReadMessage();
 	                break;
 	            case BluetoothAdapter.STATE_TURNING_ON:
 	                setStatusText("Turning Bluetooth on...");
