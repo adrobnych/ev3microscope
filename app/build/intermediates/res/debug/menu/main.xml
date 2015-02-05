@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ev3reader.MainActivity" >
+
+    <item
+        android:id="@+id/action_write_message"
+        android:orderInCategory="100"
+        android:title='"write message"'
+        app:showAsAction="never"/>
+
+</menu>
+<!-- From: file:/home/adrobnych/AndroidStudioProjects/EV3Micro/app/src/main/res/menu/main.xml -->

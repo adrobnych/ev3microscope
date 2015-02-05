@@ -1,0 +1,5 @@
+/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/classes/debug
+/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-29959c110b40c7ad14e00463f658cda186754186.jar
+/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-b514f1429663ff18846ad03c53b7dc140660adea.jar
+/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/classes-683befc90da84711d0e2017eebecd1a38f2688e8.jar
+/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/classes-391c1e7adef71a521d3118bcfd2883605c07d615.jar
