@@ -827,10 +827,12 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f080001;
         public static final int action_menu_presenter=0x7f080002;
         public static final int action_mode_close_button=0x7f080024;
-        public static final int action_write_message=0x7f08003e;
+        public static final int action_write_message=0x7f080040;
         public static final int activity_chooser_view_content=0x7f080025;
         public static final int always=0x7f080013;
         public static final int beginning=0x7f08000f;
+        public static final int buttonMotorA=0x7f08003e;
+        public static final int buttonMotorB=0x7f08003f;
         public static final int checkbox=0x7f08002d;
         public static final int collapseActionView=0x7f080014;
         public static final int default_activity_button=0x7f080028;

@@ -23,5 +23,29 @@
         android:text="Status: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="motor A"
+        android:id="@+id/buttonMotorA"
+        android:layout_below="@+id/label1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="124dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="motor B"
+        android:id="@+id/buttonMotorB"
+        android:layout_below="@+id/buttonMotorA"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="100dp"
+        android:layout_alignRight="@+id/buttonMotorA"
+        android:layout_alignEnd="@+id/buttonMotorA" />
+
 </RelativeLayout>
 <!-- From: file:/home/adrobnych/AndroidStudioProjects/EV3Micro/app/src/main/res/layout/activity_main.xml -->

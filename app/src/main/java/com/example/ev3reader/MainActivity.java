@@ -11,6 +11,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +46,41 @@ public class MainActivity extends ActionBarActivity {
             Log.d(Connector.TAG, "Bluetooth turned on");
 		}
 
+        Button buttonMotorA = (Button) findViewById(R.id.buttonMotorA);
+        buttonMotorA.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motorA");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("stop_A");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        Button buttonMotorB = (Button) findViewById(R.id.buttonMotorB);
+        buttonMotorB.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motorB");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("stop_B");
+                    return true;
+                }
+
+                return false;
+            }
+        });
 
 	}
 	
@@ -107,15 +145,15 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.action_write_message) {
-			writeMessage();
+			writeMessage("motorA");
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void writeMessage() {
+	private void writeMessage(String btCommand) {
         if(this.connector.connect())
-            (new WriteMessageTask()).execute("");
+            (new WriteMessageTask(btCommand)).execute("");
         else{
             setStatusText("BT connection failed");
             Log.d(Connector.TAG, "BT connection failed");
@@ -125,9 +163,15 @@ public class MainActivity extends ActionBarActivity {
 	
 	 private class WriteMessageTask extends AsyncTask<String, Void, String> {
 
+            private String btCommmand;
+
+            WriteMessageTask(String btCommand){
+                this.btCommmand = btCommand;
+            }
+
 	        @Override
 	        protected String doInBackground(String... params) {
-	        	connector.writeMessage();
+	        	connector.writeMessage(btCommmand);
 	            return "Pushed message to robot";
 	        }
 
@@ -135,7 +179,7 @@ public class MainActivity extends ActionBarActivity {
 	        protected void onPostExecute(String result) {
 	        	TextView tv = (TextView) findViewById(R.id.label1);
 				tv.setText("received:" + result);
-	        	Toast.makeText(getApplicationContext(), "Successfully pushed message!", Toast.LENGTH_LONG).show();
+	        	//Toast.makeText(getApplicationContext(), "Successfully pushed message!", Toast.LENGTH_LONG).show();
 	        }
 
 	        @Override

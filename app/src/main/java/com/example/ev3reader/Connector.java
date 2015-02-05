@@ -81,12 +81,13 @@ public class Connector {
 
 
 
-	public void writeMessage() {
+	public void writeMessage(String btCommand) {
 
 		if(this.bluetoothSocket!= null) {
 			try{
 				//https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
-                byte[] l_message = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'m',  (byte)'a',  (byte)'0',  (byte)'0',  (byte)'0',   (byte)'!',    (byte)0};
+                byte[] l_message = {(byte)18, (byte)0, (byte)1, (byte)0, (byte)129, (byte)158, (byte)4, (byte)97, (byte)98, (byte)99, (byte)0, (byte)7,    (byte)0,
+                        (byte)btCommand.charAt(0),  (byte)btCommand.charAt(1),  (byte)btCommand.charAt(2),  (byte)btCommand.charAt(3),  (byte)btCommand.charAt(4),   (byte)btCommand.charAt(5),    (byte)0};
                 Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
                 outStream.write(l_message, 0, l_message.length);
 				outStream.flush();
