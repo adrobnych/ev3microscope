@@ -116,10 +116,16 @@ public class Connector {
 		if(this.bluetoothSocket!= null) {
 			try{
 				DataOutputStream outStream = new DataOutputStream(this.bluetoothSocket.getOutputStream());
-				//String str = "hello robo!";
-                byte[] l_message = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)7,    (byte)0,  (byte)104,  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
+				//https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
+                byte[] l_message = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'h',  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
                 Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
 				outStream.write(l_message, 0, l_message.length);
+                byte[] l_message1 = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'g',  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
+                Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
+                outStream.write(l_message1, 0, l_message1.length);
+                byte[] l_message2 = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'z',  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
+                Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
+                outStream.write(l_message2, 0, l_message2.length);
 				outStream.flush();
 				outStream.close();
 				Log.d(Connector.TAG, "Successfully written message" + l_message);
