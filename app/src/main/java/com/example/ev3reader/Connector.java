@@ -77,39 +77,7 @@ public class Connector {
 	}
 	
 
-	public String readMessage() {
-		String message = "error, empty string";
-
-		if(this.bluetoothSocket!= null) {
-			try {
-				byte[] buffer = new byte[500];
-				DataInputStream input = new DataInputStream(this.bluetoothSocket.getInputStream());
-				int length = input.read(buffer);
-				last_message = buffer;
-				message = "" + (new String(buffer)) + ": length: " + length + "\n";
-				for(int i=0; i< length; i++)
-					message = message + "|" + ((int)buffer[i]&0xff);
-				Log.d(Connector.TAG, "Successfully read message");
-				//Toast.makeText(ctx, "Successfully read message!", Toast.LENGTH_LONG).show();
-				input.close();
-			} 
-			catch (IOException e) {
-				message = e.toString();
-				Log.d(Connector.TAG, "Couldn't read message");
-				//Toast.makeText(ctx, "Couldn't read message!", Toast.LENGTH_LONG).show();
-
-			}  
-		}
-		else {
-			message = "bluetoothSocket == null";
-			Log.d(Connector.TAG, "Couldn't read message");
-			//Toast.makeText(ctx, "Couldn't read message", Toast.LENGTH_LONG).show();
-
-		}
-
-		return message;
-
-	}
+	
 
 	public void writeMessage() {
 

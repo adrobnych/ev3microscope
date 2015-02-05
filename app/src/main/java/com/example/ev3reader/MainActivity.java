@@ -41,7 +41,6 @@ public class MainActivity extends ActionBarActivity {
 		else{
 			setStatusText("Bluetooth on");
             Log.d(Connector.TAG, "Bluetooth turned on");
-			//connectAndReadMessage();
 		}
 	}
 	
@@ -79,7 +78,6 @@ public class MainActivity extends ActionBarActivity {
 	                setStatusText("Bluetooth on");
 	                Log.d(Connector.TAG, "Bluetooth turned on");
 	                Toast.makeText(getApplicationContext(), "Bluetooth turned on!", Toast.LENGTH_LONG).show();
-	                //connectAndReadMessage();
 	                break;
 	            case BluetoothAdapter.STATE_TURNING_ON:
 	                setStatusText("Turning Bluetooth on...");
@@ -93,34 +91,7 @@ public class MainActivity extends ActionBarActivity {
 		statusTV.setText("Status: " + text);
 	}
 	
-	private void connectAndReadMessage(){
-		
-		if(this.connector.connect())
-			new ReadMessageTask().execute("");
 
-	}
-	
-	 private class ReadMessageTask extends AsyncTask<String, Void, String> {
-
-	        @Override
-	        protected String doInBackground(String... params) {
-	        	String result = connector.readMessage();
-	            return result;
-	        }
-
-	        @Override
-	        protected void onPostExecute(String result) {
-	        	TextView tv = (TextView) findViewById(R.id.label1);
-				tv.setText("received:" + result);
-	        	Toast.makeText(getApplicationContext(), "Successfully read message!", Toast.LENGTH_LONG).show();
-	        }
-
-	        @Override
-	        protected void onPreExecute() {}
-
-	        @Override
-	        protected void onProgressUpdate(Void... values) {}
-	    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,9 +102,6 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_write_message) {
 			writeMessage();
