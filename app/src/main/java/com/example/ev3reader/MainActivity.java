@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
 		//create BT adapter
 		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		
-		// Register for broadcasts on BluetoothAdapter state change
+		// Register for broadcasts on BluetoothAdapter statechmange
 	    IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 	    this.registerReceiver(mReceiver, filter);
 		
@@ -42,12 +42,15 @@ public class MainActivity extends ActionBarActivity {
 			setStatusText("Bluetooth on");
             Log.d(Connector.TAG, "Bluetooth turned on");
 		}
+
+
 	}
 	
 	@Override
     public void onStop() {
         super.onStop();
         this.connector.setBluetooth(Connector.BT_OFF);
+        this.connector.close();
     }
 	
 	@Override
@@ -111,8 +114,13 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private void writeMessage() {
-		if(this.connector.connect())
-		  new WriteMessageTask().execute("");
+        if(this.connector.connect())
+            (new WriteMessageTask()).execute("");
+        else{
+            setStatusText("BT connection failed");
+            Log.d(Connector.TAG, "BT connection failed");
+        }
+
 	}
 	
 	 private class WriteMessageTask extends AsyncTask<String, Void, String> {

@@ -22,7 +22,7 @@ public class Connector {
 	public BluetoothSocket bluetoothSocket;
 	public String address;
 	
-	public byte[] last_message;
+    private DataOutputStream outStream;
 
 	Context ctx;
 
@@ -56,46 +56,41 @@ public class Connector {
 
 	}
 
-	public boolean connect() {
+    public boolean connect() {
+        if (outStream == null){
+            boolean connected = false;
+            BluetoothDevice nxt = this.bluetoothAdapter.getRemoteDevice(this.address);
 
-		boolean connected = false;
-		BluetoothDevice nxt = this.bluetoothAdapter.getRemoteDevice(this.address);
+            try {
+                this.bluetoothSocket = nxt.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
+                this.bluetoothSocket.connect();
+                connected = true;
+                outStream = new DataOutputStream(this.bluetoothSocket.getOutputStream());
+            } catch (IOException e) {
+                connected = false;
 
-		try {
-			this.bluetoothSocket = nxt.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
-			this.bluetoothSocket.connect();
-			connected = true;
+            }
 
-		} 
-		catch (IOException e) {
-			connected = false;
+            return connected;
+        }
+        else
+            return true;
 
-		}
-
-		return connected;
-
-	}
+    }
 	
 
-	
+
 
 	public void writeMessage() {
 
 		if(this.bluetoothSocket!= null) {
 			try{
-				DataOutputStream outStream = new DataOutputStream(this.bluetoothSocket.getOutputStream());
 				//https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
-                byte[] l_message = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'h',  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
+                byte[] l_message = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'m',  (byte)'a',  (byte)'0',  (byte)'0',  (byte)'0',   (byte)'!',    (byte)0};
                 Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
-				outStream.write(l_message, 0, l_message.length);
-                byte[] l_message1 = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'g',  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
-                Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
-                outStream.write(l_message1, 0, l_message1.length);
-                byte[] l_message2 = {(byte)18, (byte)0, (byte)1,    (byte)0,  (byte)129,  (byte)158,    (byte)4,   (byte)97,   (byte)98,   (byte)99,    (byte)0,    (byte)("hello!".length() + 1),    (byte)0,  (byte)'z',  (byte)101,  (byte)108,  (byte)108,  (byte)111,   (byte)33,    (byte)0};
-                Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
-                outStream.write(l_message2, 0, l_message2.length);
+                outStream.write(l_message, 0, l_message.length);
 				outStream.flush();
-				outStream.close();
+				//outStream.close();
 				Log.d(Connector.TAG, "Successfully written message" + l_message);
 			}
 			catch (Exception e) {
@@ -111,4 +106,13 @@ public class Connector {
 		}
 	}
 
+    public void close() {
+
+        try {
+            //outStream.flush();
+            outStream.close();
+        } catch (IOException e) {
+            Log.d(Connector.TAG, "Couldn't close BT connector: " + e);
+        }
+    }
 }
