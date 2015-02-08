@@ -82,6 +82,21 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        Button buttonTest = (Button) findViewById(R.id.buttonTest);
+        buttonTest.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("25");
+                    return true;
+                }
+
+                
+
+                return false;
+            }
+        });
+
 	}
 	
 	@Override

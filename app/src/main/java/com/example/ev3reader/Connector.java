@@ -86,13 +86,31 @@ public class Connector {
 		if(this.bluetoothSocket!= null) {
 			try{
 				//https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
-                byte[] l_message = {(byte)18, (byte)0, (byte)1, (byte)0, (byte)129, (byte)158, (byte)4, (byte)97, (byte)98, (byte)99, (byte)0, (byte)7,    (byte)0,
-                        (byte)btCommand.charAt(0),  (byte)btCommand.charAt(1),  (byte)btCommand.charAt(2),  (byte)btCommand.charAt(3),  (byte)btCommand.charAt(4),   (byte)btCommand.charAt(5),    (byte)0};
-                Log.d(Connector.TAG, "++++++++++++++++++++++++++++++++ message to write: " + l_message);
+                byte[] l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
+                            (byte) 'l',   (byte) 'e',   (byte) 'v',   (byte) 'e',   (byte) 'l',   (byte) '1',   (byte) 0};
                 outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+                l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
+                        (byte) '1',   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0};
+                outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
+
+                l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
+                        (byte) 'l',   (byte) 'e',   (byte) 'v',   (byte) 'e',   (byte) 'l',   (byte) '2',   (byte) 0};
+                outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
+                l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
+                        (byte) '8',   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0};
+                outStream.write(l_message, 0, l_message.length);
+
 				outStream.flush();
-				//outStream.close();
-				Log.d(Connector.TAG, "Successfully written message" + l_message);
+                //byte[]   l_message = new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
+                //           (byte) btCommand.charAt(0), (byte) btCommand.charAt(1), (byte) btCommand.charAt(2), (byte) btCommand.charAt(3), (byte) btCommand.charAt(4), (byte) btCommand.charAt(5), (byte) 0};
+
+                //outStream.close();
+				Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
 			}
 			catch (Exception e) {
 

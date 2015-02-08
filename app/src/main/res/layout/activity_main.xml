@@ -47,4 +47,15 @@
         android:layout_alignRight="@+id/buttonMotorA"
         android:layout_alignEnd="@+id/buttonMotorA" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Number bt"
+        android:id="@+id/buttonTest"
+        android:layout_above="@+id/statusLabel"
+        android:layout_alignRight="@+id/buttonMotorB"
+        android:layout_alignEnd="@+id/buttonMotorB"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
