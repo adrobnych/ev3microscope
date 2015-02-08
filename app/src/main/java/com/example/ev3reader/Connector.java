@@ -77,40 +77,27 @@ public class Connector {
             return true;
 
     }
-	
 
 
+    public void writeMessage(String btCommand) {
+        if(btCommand.equals("level"))
+            btLevel();
+        else
+            btMessage(btCommand);
+    }
 
-	public void writeMessage(String btCommand) {
+	public void btMessage(String btCommand) {
 
 		if(this.bluetoothSocket!= null) {
 			try{
 				//https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
-                byte[] l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
-                            (byte) 'l',   (byte) 'e',   (byte) 'v',   (byte) 'e',   (byte) 'l',   (byte) '1',   (byte) 0};
+                byte[] l_message =  composeBTArray(btCommand);
                 outStream.write(l_message, 0, l_message.length);
                 Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
-                l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
-                        (byte) '1',   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0};
-                outStream.write(l_message, 0, l_message.length);
-                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
-
-
-                l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
-                        (byte) 'l',   (byte) 'e',   (byte) 'v',   (byte) 'e',   (byte) 'l',   (byte) '2',   (byte) 0};
-                outStream.write(l_message, 0, l_message.length);
-                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
-
-                l_message =  new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
-                        (byte) '8',   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0,   (byte) 0};
-                outStream.write(l_message, 0, l_message.length);
 
 				outStream.flush();
-                //byte[]   l_message = new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129, (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
-                //           (byte) btCommand.charAt(0), (byte) btCommand.charAt(1), (byte) btCommand.charAt(2), (byte) btCommand.charAt(3), (byte) btCommand.charAt(4), (byte) btCommand.charAt(5), (byte) 0};
-
                 //outStream.close();
-				Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
 			}
 			catch (Exception e) {
 
@@ -125,6 +112,44 @@ public class Connector {
 		}
 	}
 
+    public void btLevel() {
+
+        if(this.bluetoothSocket!= null) {
+            try{
+                //https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
+                byte[] l_message =  composeBTArray("level1");
+                outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
+                l_message =  composeBTArray("1");
+                outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
+
+                l_message =  composeBTArray("level2");
+                outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
+                l_message =  composeBTArray("8");
+                outStream.write(l_message, 0, l_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+
+                outStream.flush();
+
+            }
+            catch (Exception e) {
+
+                Log.d(Connector.TAG, "Couldn't write message: " + e);
+
+            }
+
+
+        }
+        else {
+            Log.d(Connector.TAG, "Couldn't write message");
+        }
+    }
+
     public void close() {
 
         try {
@@ -133,5 +158,16 @@ public class Connector {
         } catch (IOException e) {
             Log.d(Connector.TAG, "Couldn't close BT connector: " + e);
         }
+    }
+
+    private byte[] composeBTArray(String payLoad){
+        byte[]   bt_message = new byte[]{(byte) 18, (byte) 0, (byte) 1, (byte) 0, (byte) 129,
+                (byte) 158, (byte) 4, (byte) 97, (byte) 98, (byte) 99, (byte) 0, (byte) 7, (byte) 0,
+                (byte) 0, (byte) 0, (byte) 0,
+                (byte) 0, (byte) 0, (byte) 0, (byte) 0};
+        for(int i=0; i<payLoad.length(); i++)
+            bt_message[i+13] = (byte) payLoad.charAt(i);
+        return bt_message;
+
     }
 }

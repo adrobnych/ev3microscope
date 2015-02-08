@@ -87,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
-                    writeMessage("25");
+                    writeMessage("level");
                     return true;
                 }
 
