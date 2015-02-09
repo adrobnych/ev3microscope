@@ -46,6 +46,24 @@ public class MainActivity extends ActionBarActivity {
             Log.d(Connector.TAG, "Bluetooth turned on");
 		}
 
+        Button buttonMBackA = (Button) findViewById(R.id.buttonMBackA);
+        buttonMBackA.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("mbackA");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("stop_A");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
         Button buttonMotorA = (Button) findViewById(R.id.buttonMotorA);
         buttonMotorA.setOnTouchListener(new View.OnTouchListener() {
             @Override
