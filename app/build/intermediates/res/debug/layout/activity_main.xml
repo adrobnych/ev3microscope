@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ev3reader.MainActivity" >
+    tools:context="com.codegemz.ev3micro.MainActivity" >
 
     <TextView
         android:id="@+id/label1"
@@ -68,6 +68,17 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarA"
+        android:layout_below="@+id/label1"
+        android:layout_alignRight="@+id/buttonMotorA"
+        android:layout_alignEnd="@+id/buttonMotorA"
+        android:layout_toEndOf="@+id/statusLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 <!-- From: file:/home/adrobnych/AndroidStudioProjects/EV3Micro/app/src/main/res/layout/activity_main.xml -->
