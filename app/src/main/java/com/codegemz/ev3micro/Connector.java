@@ -142,13 +142,21 @@ public class Connector {
                 //https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
                 //http://www.robotappstore.com/Knowledge-Base/How-to-send-commands-to-Lego-NXT/37.html
 
-                byte[]   bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x04,
+                byte[]   bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
                         (byte) 0x80,
                         (byte) 0x00,
-                        (byte) 0x00,   
-                        (byte) 0xA4, // power a4 = 20
-                        (byte) 0, (byte) 0x01,
-                        (byte) 0x14, (byte) 0xA6, (byte) 0, (byte) 0x01};
+                        (byte) 0x00,
+                        (byte) 0xA4, // set power command
+                        (byte) 0x00, // layer ?
+                        (byte) 0x02, // motor - A =1   B=2
+                        (byte) ((EV3App)ctx.getApplicationContext()).getLevelA(),   // power
+                                       //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                        (byte) 0xA6,  //start motor command
+                        (byte) 0,     // layer
+                        (byte) 0x02  // motor - A =1   B=2
+                };
                 outStream.write(bt_message, 0, bt_message.length);
                 Log.d(Connector.TAG, "Successfully written message" + new String(bt_message));
 
