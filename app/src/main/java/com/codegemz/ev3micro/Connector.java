@@ -140,7 +140,19 @@ public class Connector {
         if(this.bluetoothSocket!= null) {
             try{
                 //https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
-                byte[] l_message =  composeBTArray("level1");
+                //http://www.robotappstore.com/Knowledge-Base/How-to-send-commands-to-Lego-NXT/37.html
+
+                byte[]   bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x04,
+                        (byte) 0x80,
+                        (byte) 0x00,
+                        (byte) 0x00,   
+                        (byte) 0xA4, // power a4 = 20
+                        (byte) 0, (byte) 0x01,
+                        (byte) 0x14, (byte) 0xA6, (byte) 0, (byte) 0x01};
+                outStream.write(bt_message, 0, bt_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(bt_message));
+
+               /* byte[] l_message =  composeBTArray("level1");
                 outStream.write(l_message, 0, l_message.length);
                 Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
 
@@ -155,7 +167,7 @@ public class Connector {
 
                 l_message =  composeBTArray(prepareDeigits()[1]);
                 outStream.write(l_message, 0, l_message.length);
-                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));*/
 
                 //outStream.flush();
 
