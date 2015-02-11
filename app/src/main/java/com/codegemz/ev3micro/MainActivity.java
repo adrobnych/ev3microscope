@@ -1,8 +1,11 @@
 package com.codegemz.ev3micro;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
@@ -21,10 +24,13 @@ import android.widget.Toast;
 import com.codegemz.ev3micro.Connector;
 import com.codegemz.ev3micro.R;
 
+import java.util.Set;
+
 public class MainActivity extends ActionBarActivity {
 	private Connector connector;
 	private TextView statusTV;
 	private BluetoothAdapter bluetoothAdapter;
+    private String btAddress;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +40,30 @@ public class MainActivity extends ActionBarActivity {
 		
 		//create BT adapter
 		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        // If there are paired devices
+        if (pairedDevices.size() > 0) {
+            // Loop through paired devices
+            for (BluetoothDevice device : pairedDevices) {
+                // Add the name and address to an array adapter to show in a ListView
+                //mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+                if(device.getName().equals("EV3")) {
+                    btAddress = device.getAddress();
+                    Log.d(Connector.TAG, "" + device.getAddress() + "  " + device.getName());
+                    break;
+                }
+            }
+        }
+        if(btAddress == null)
+            showBTAlarm();
 		
 		// Register for broadcasts on BluetoothAdapter statechmange
 	    IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 	    this.registerReceiver(mReceiver, filter);
 		
 		// Establish a bluetooth connection to the NXT
-		this.connector = new Connector(getApplicationContext(), "00:16:53:48:65:12",
+		this.connector = new Connector(getApplicationContext(), btAddress,
 				bluetoothAdapter);
 		
 		if(this.bluetoothAdapter.isEnabled() == false)
@@ -141,8 +164,22 @@ public class MainActivity extends ActionBarActivity {
         });
 
 	}
-	
-	@Override
+
+    private void showBTAlarm() {
+        new AlertDialog.Builder(this)
+                .setTitle("No EV3 devices found!")
+                .setMessage("Please pair with one and only one EV3 device using Bluetooth settings on this device")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setCancelable(false)
+                .show();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         this.connector.setBluetooth(Connector.BT_OFF);
@@ -192,22 +229,6 @@ public class MainActivity extends ActionBarActivity {
 	
 
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_write_message) {
-			writeMessage("motorA");
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 	private void writeMessage(String btCommand) {
         if(this.connector.connect())

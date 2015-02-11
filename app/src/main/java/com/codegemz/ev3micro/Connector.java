@@ -197,7 +197,8 @@ public class Connector {
 
         try {
             //outStream.flush();
-            outStream.close();
+            if(outStream != null)
+                outStream.close();
         } catch (IOException e) {
             Log.d(Connector.TAG, "Couldn't close BT connector: " + e);
         }
