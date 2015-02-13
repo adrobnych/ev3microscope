@@ -119,6 +119,14 @@
     </FrameLayout>
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="Status: "
+        android:id="@+id/statusTextView"/>
+
+
 
 </LinearLayout>
 <!-- From: file:/home/adrobnych/AndroidStudioProjects/EV3Micro/app/src/main/res/layout-v14/activity_home.xml -->

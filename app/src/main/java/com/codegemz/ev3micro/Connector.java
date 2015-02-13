@@ -78,9 +78,7 @@ public class Connector {
 
 
     public void writeMessage(String btCommand) {
-        if(btCommand.equals("level"))
-            btLevel();
-        else
+
             btMessage(btCommand);
     }
 
@@ -88,13 +86,64 @@ public class Connector {
 
 		if(this.bluetoothSocket!= null) {
 			try{
-				//https://wiki.qut.edu.au/display/cyphy/Mailbox+and+Messages
-                byte[] l_message =  composeBTArray(btCommand);
-                outStream.write(l_message, 0, l_message.length);
-                Log.d(Connector.TAG, "Successfully written message" + new String(l_message));
+                byte[] bt_message = null;
+                if(btCommand.equals("motor_A_UP")) {
+                    bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            (byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x01, // motor - A =1   B=2
+                            (byte) 30, //((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
 
-				//outStream.flush();
-                //outStream.close();
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x01  // motor - A =1   B=2
+                    };
+                }
+                if(btCommand.equals("motor_A_stop")) {
+                    bt_message = new byte[]{(byte) 0x09, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            /*(byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x01, // motor - A =1   B=2
+                            (byte) ((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x01  // motor - A =1   B=2*/
+                            (byte) 0xA3,
+                            (byte) 0x00,
+                            (byte) 0x01,
+                            (byte) 0x01
+                    };
+                }
+                if(btCommand.equals("motor_B_UP")) {
+                    bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            (byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x02, // motor - A =1   B=2
+                            (byte) ((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x02  // motor - A =1   B=2
+                    };
+                }
+                outStream.write(bt_message, 0, bt_message.length);
+                Log.d(Connector.TAG, "Successfully written message" + new String(bt_message));
 
 			}
 			catch (Exception e) {
@@ -110,30 +159,7 @@ public class Connector {
 		}
 	}
 
-    private String[] prepareDeigits(){
-        String [] result = new String[2];
-        int level = ((EV3App)ctx.getApplicationContext()).getLevelA();
-        if(level == 100) {
-            result[0] = "da";
-            result[1] = "d0";
-        }
-        else {
-            int d1 = level / 10;
-            int d2 = level - d1*10;
-            result[0] = "d" + d1;
-            if(d1==5)
-                result[0] = "dP";
-            if(d1==6)
-                result[0] = "dS";
 
-            result[1] = "d" + d2;
-            if(d2==5)
-                result[1] = "dP";
-            if(d2==6)
-                result[1] = "dS";
-        }
-        return result;
-    }
 
     public void btLevel() {
 
