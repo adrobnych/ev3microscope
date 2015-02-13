@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
-        <dex dex="/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/classes-683befc90da84711d0e2017eebecd1a38f2688e8.jar" />
-    </item>
-    <item
         jar="/home/adrobnych/dev/adt-bundle-linux-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
         <dex dex="/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-29959c110b40c7ad14e00463f658cda186754186.jar" />
+    </item>
+    <item
+        jar="/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/pre-dexed/debug/classes-683befc90da84711d0e2017eebecd1a38f2688e8.jar" />
     </item>
     <item
         jar="/home/adrobnych/AndroidStudioProjects/EV3Micro/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
