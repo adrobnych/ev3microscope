@@ -42,16 +42,38 @@
                 android:id="@+id/ibDOWN1000"
                 android:layout_gravity="center_horizontal|bottom" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="x 800"
+                android:orientation="vertical"
                 android:background="#70333333"
-                android:id="@+id/textView"
-                android:layout_gravity="center"
-                android:textColor="@android:color/holo_blue_light"
-                android:textStyle="bold" />
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="A"
+
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:id="@+id/textView4"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="x 800"
+
+                    android:id="@+id/textView"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
         </FrameLayout>
 
@@ -68,7 +90,7 @@
                 android:id="@+id/seekBar1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                
+
                 />
 
         </FrameLayout>
@@ -84,11 +106,11 @@
             >
 
             <ImageButton
-            android:layout_width="100sp"
-            android:layout_height="40sp"
-            android:background="@drawable/arrow_up"
-            android:id="@+id/ibUP200"
-            android:layout_gravity="center_horizontal|top" />
+                android:layout_width="100sp"
+                android:layout_height="40sp"
+                android:background="@drawable/arrow_up"
+                android:id="@+id/ibUP200"
+                android:layout_gravity="center_horizontal|top" />
 
 
 
@@ -99,6 +121,24 @@
                 android:id="@+id/ibDOWN200"
                 android:layout_gravity="center_horizontal|bottom" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#70333333"
+                android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="C"
+
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:id="@+id/textView5"
+                android:textStyle="bold"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,6 +149,7 @@
                 android:layout_gravity="center"
                 android:textColor="@android:color/holo_blue_light"
                 android:textStyle="bold" />
+            </LinearLayout>
         </FrameLayout>
     </LinearLayout>
 
@@ -124,11 +165,11 @@
         android:background="@drawable/stage">
 
         <ImageButton
-        android:layout_width="40sp"
-        android:layout_height="100sp"
-        android:background="@drawable/arrow_left"
-        android:id="@+id/ibLEFTTable"
-        android:layout_gravity="center_vertical|left" />
+            android:layout_width="40sp"
+            android:layout_height="100sp"
+            android:background="@drawable/arrow_left"
+            android:id="@+id/ibLEFTTable"
+            android:layout_gravity="center_vertical|left" />
 
 
 
@@ -139,6 +180,24 @@
             android:id="@+id/ibRIGHTTable"
             android:layout_gravity="center_vertical|right" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#70333333"
+            android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="B"
+
+            android:layout_gravity="center"
+            android:textColor="@android:color/holo_blue_light"
+            android:id="@+id/textView6"
+            android:textStyle="bold"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,6 +208,7 @@
             android:layout_gravity="center"
             android:textColor="@android:color/holo_blue_light"
             android:textStyle="bold"  />
+        </LinearLayout>
     </FrameLayout>
 
 
