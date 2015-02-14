@@ -31,6 +31,7 @@ public class HomeActivity extends ActionBarActivity {
     private TextView statusTV;
     private BluetoothAdapter bluetoothAdapter;
     private String btAddress;
+    public final int STARTING_POSITION = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,25 +78,11 @@ public class HomeActivity extends ActionBarActivity {
         }
 
 
-        SeekBar sbA = (SeekBar) findViewById(R.id.seekBar1);
-        sbA.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int current_level;
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                current_level = i;
-            }
+        VerticalSeekBar sbA = (VerticalSeekBar) findViewById(R.id.seekBar1);
+        sbA.setApp(getApplication());
+        ((EV3App)getApplication()).setLevelA(STARTING_POSITION);
+        sbA.setProgress(STARTING_POSITION*3);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                ((EV3App)getApplication()).setLevelA(current_level);
-                setStatusText("new level: " + current_level);
-            }
-        });
 
         ImageButton buttonMotorA = (ImageButton) findViewById(R.id.ibUP200);
         buttonMotorA.setOnTouchListener(new View.OnTouchListener() {
@@ -111,6 +98,26 @@ public class HomeActivity extends ActionBarActivity {
 
                 if (event.getAction() == MotionEvent.ACTION_UP ) {
                     writeMessage("motor_A_stop");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        ImageButton buttonMotorB = (ImageButton) findViewById(R.id.ibUP1000);
+        buttonMotorB.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motor_B_UP");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("motor_B_stop");
                     return true;
                 }
 

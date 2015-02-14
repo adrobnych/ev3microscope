@@ -1,12 +1,19 @@
 package com.codegemz.ev3micro;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
+import android.util.Log;
 
 public class VerticalSeekBar extends SeekBar {
+    public void setApp(Application app) {
+        this.app = app;
+    }
+
+    private Application app;
 
     public VerticalSeekBar(Context context) {
         super(context);
@@ -49,11 +56,20 @@ public class VerticalSeekBar extends SeekBar {
             case MotionEvent.ACTION_UP:
                 setProgress(getMax() - (int) (getMax() * event.getY() / getHeight()));
                 onSizeChanged(getWidth(), getHeight(), 0, 0);
+                ((EV3App)app).setLevelA(progressToPower());
+                Log.d("VerticalSeekBar", "new level: " + getProgress());
                 break;
 
             case MotionEvent.ACTION_CANCEL:
                 break;
         }
         return true;
+    }
+
+    private int progressToPower(){
+        int result = getProgress()/3;
+        if(result == 33)
+            result = 32;
+        return result;
     }
 }

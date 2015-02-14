@@ -95,7 +95,7 @@ public class Connector {
                             (byte) 0xA4, // set power command
                             (byte) 0x00, // layer ?
                             (byte) 0x01, // motor - A =1   B=2
-                            (byte) 30, //((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            (byte) ((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
                             //   0 -> 32  33 <- 63    64 and 65 - max
 
 
@@ -140,6 +140,27 @@ public class Connector {
                             (byte) 0xA6,  //start motor command
                             (byte) 0,     // layer
                             (byte) 0x02  // motor - A =1   B=2
+                    };
+                }
+                if(btCommand.equals("motor_B_stop")) {
+                    bt_message = new byte[]{(byte) 0x09, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            /*(byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x01, // motor - A =1   B=2
+                            (byte) ((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x01  // motor - A =1   B=2*/
+                            (byte) 0xA3,
+                            (byte) 0x00,
+                            (byte) 0x02,
+                            (byte) 0x01
                     };
                 }
                 outStream.write(bt_message, 0, bt_message.length);
