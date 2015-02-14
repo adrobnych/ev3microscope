@@ -49,29 +49,21 @@ MERGED from com.android.support:support-v4:20.0.0:17:5
 		ADDED from AndroidManifest.xml:28:9
 	android:name
 		ADDED from AndroidManifest.xml:24:9
-activity#com.codegemz.ev3micro.MainActivity
+activity#com.codegemz.ev3micro.HomeActivity
 ADDED from AndroidManifest.xml:29:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:32:13
-	android:label
 		ADDED from AndroidManifest.xml:31:13
+	android:label
+		ADDED from AndroidManifest.xml:32:13
 	android:name
 		ADDED from AndroidManifest.xml:30:13
-activity#com.codegemz.ev3micro.HomeActivity
-ADDED from AndroidManifest.xml:35:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:37:13
-	android:label
-		ADDED from AndroidManifest.xml:38:13
-	android:name
-		ADDED from AndroidManifest.xml:36:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:39:13
+ADDED from AndroidManifest.xml:33:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:40:17
+ADDED from AndroidManifest.xml:34:17
 	android:name
-		ADDED from AndroidManifest.xml:40:25
+		ADDED from AndroidManifest.xml:34:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:42:17
+ADDED from AndroidManifest.xml:36:17
 	android:name
-		ADDED from AndroidManifest.xml:42:27
+		ADDED from AndroidManifest.xml:36:27

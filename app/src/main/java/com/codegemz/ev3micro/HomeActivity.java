@@ -224,8 +224,23 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     public void onStop() {
         super.onStop();
-        this.connector.setBluetooth(Connector.BT_OFF);
+        //this.connector.setBluetooth(Connector.BT_OFF);
         this.connector.close();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Establish a bluetooth connection to the NXT
+        this.connector = new Connector(getApplicationContext(), btAddress,
+                bluetoothAdapter);
+
+        if(this.bluetoothAdapter.isEnabled() == false)
+            this.connector.setBluetooth(Connector.BT_ON);
+        else{
+            setStatusText("Bluetooth on");
+            Log.d(Connector.TAG, "Bluetooth turned on");
+        }
     }
 
     @Override
