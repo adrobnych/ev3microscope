@@ -42,6 +42,17 @@
                 android:id="@+id/ibDOWN1000"
                 android:layout_gravity="center_horizontal|bottom" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="x 800"
+                android:background="#70EC7703"
+                android:id="@+id/textView"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:textStyle="bold" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -87,6 +98,17 @@
                 android:background="@drawable/arrow_down"
                 android:id="@+id/ibDOWN200"
                 android:layout_gravity="center_horizontal|bottom" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="x 200"
+                android:background="#70EC7703"
+                android:id="@+id/textView2"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_blue_light"
+                android:textStyle="bold" />
         </FrameLayout>
     </LinearLayout>
 
@@ -116,6 +138,17 @@
             android:background="@drawable/arrow_right"
             android:id="@+id/ibRIGHTTable"
             android:layout_gravity="center_vertical|right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Stages"
+            android:background="#70EC7703"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:textColor="@android:color/holo_blue_light"
+            android:textStyle="bold"  />
     </FrameLayout>
 
 

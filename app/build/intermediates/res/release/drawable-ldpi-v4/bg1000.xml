@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/bigtower"
-    android:tileMode="disabled" android:gravity="center" >
-</bitmap><!-- From: file:/home/adrobnych/AndroidStudioProjects/EV3Micro/app/src/main/res/drawable-ldpi/bg1000.xml -->
