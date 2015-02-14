@@ -68,8 +68,8 @@ public class VerticalSeekBar extends SeekBar {
 
     private int progressToPower(){
         int result = getProgress()/3;
-        if(result == 33)
-            result = 32;
+        if(result >= 32)
+            result = 31;
         return result;
     }
 }

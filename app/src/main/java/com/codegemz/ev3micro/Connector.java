@@ -122,7 +122,24 @@ public class Connector {
                             (byte) 0xA3,
                             (byte) 0x00,
                             (byte) 0x01,
-                            (byte) 0x01
+                            (byte) 0x01    // 1 - tormoz
+                    };
+                }
+                if(btCommand.equals("motor_A_DOWN")) {
+                    bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            (byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x01, // motor - A =1   B=2
+                            (byte) (63-((EV3App) ctx.getApplicationContext()).getLevelA()),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x01  // motor - A =1   B=2
                     };
                 }
                 if(btCommand.equals("motor_B_UP")) {
@@ -161,6 +178,78 @@ public class Connector {
                             (byte) 0x00,
                             (byte) 0x02,
                             (byte) 0x01
+                    };
+                }
+                if(btCommand.equals("motor_B_DOWN")) {
+                    bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            (byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x02, // motor - A =1   B=2
+                            (byte) (63 - ((EV3App) ctx.getApplicationContext()).getLevelA()),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x02  // motor - A =1   B=2
+                    };
+                }
+                if(btCommand.equals("motor_C_UP")) {
+                    bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            (byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x04, // motor - A =1   B=2
+                            (byte) ((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x04  // motor - A =1   B=2
+                    };
+                }
+                if(btCommand.equals("motor_C_stop")) {
+                    bt_message = new byte[]{(byte) 0x09, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            /*(byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x01, // motor - A =1   B=2
+                            (byte) ((EV3App) ctx.getApplicationContext()).getLevelA(),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x01  // motor - A =1   B=2*/
+                            (byte) 0xA3,
+                            (byte) 0x00,
+                            (byte) 0x04,
+                            (byte) 0x01
+                    };
+                }
+                if(btCommand.equals("motor_C_DOWN")) {
+                    bt_message = new byte[]{(byte) 0x0C, (byte) 0x00, (byte) 0x80, (byte) 0x00,
+                            (byte) 0x80,
+                            (byte) 0x00,
+                            (byte) 0x00,
+                            (byte) 0xA4, // set power command
+                            (byte) 0x00, // layer ?
+                            (byte) 0x04, // motor - A =1   B=2
+                            (byte) (63 - ((EV3App) ctx.getApplicationContext()).getLevelA()),   // power
+                            //   0 -> 32  33 <- 63    64 and 65 - max
+
+
+                            (byte) 0xA6,  //start motor command
+                            (byte) 0,     // layer
+                            (byte) 0x04  // motor - A =1   B=2
                     };
                 }
                 outStream.write(bt_message, 0, bt_message.length);

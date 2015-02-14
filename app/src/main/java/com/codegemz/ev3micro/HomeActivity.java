@@ -105,6 +105,26 @@ public class HomeActivity extends ActionBarActivity {
             }
         });
 
+        ImageButton buttonMotorADown = (ImageButton) findViewById(R.id.ibDOWN200);
+        buttonMotorADown.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motor_A_DOWN");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("motor_A_stop");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
         ImageButton buttonMotorB = (ImageButton) findViewById(R.id.ibUP1000);
         buttonMotorB.setOnTouchListener(new View.OnTouchListener() {
 
@@ -118,6 +138,66 @@ public class HomeActivity extends ActionBarActivity {
 
                 if (event.getAction() == MotionEvent.ACTION_UP ) {
                     writeMessage("motor_B_stop");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        ImageButton buttonMotorBDown = (ImageButton) findViewById(R.id.ibDOWN1000);
+        buttonMotorBDown.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motor_B_DOWN");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("motor_B_stop");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        ImageButton buttonMotorC = (ImageButton) findViewById(R.id.ibLEFTTable);
+        buttonMotorC.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motor_C_UP");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("motor_C_stop");
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        ImageButton buttonMotorCDown = (ImageButton) findViewById(R.id.ibRIGHTTable);
+        buttonMotorCDown.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                    writeMessage("motor_C_DOWN");
+                    return true;
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_UP ) {
+                    writeMessage("motor_C_stop");
                     return true;
                 }
 
